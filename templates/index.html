@@ -1,0 +1,30 @@
+<html>
+{% extends 'base.html' %}
+<body>
+    {% block content %}
+    <body>
+        {% for post in posts %}
+        <div class="card" style="width: 20rem; text-align: center; margin-left: 40%; margin-top: 3%; margin-bottom: 3%; background-color:darkslategrey; color: white; font-size: large;">
+          <div class="card-body">
+            <p  class="card-subtitle mb-2 text-body-secondary">Post by: {{post.author.username}} on {{post.posted_date.strftime('%d-%m-%Y')}}</p>
+            
+            <h5 class="card-title">{{post.title}}</h5>
+            <p class="card-subtitle mb-2 text-body-secondary"> {{post.content}}</p>
+        </div>
+  </div>  
+{% endfor %}
+<div style="text-align: center;" >
+    {% if page > 1 %}
+    <a  href="{{url_for('index', page=page-1)}}" > Previous </a>
+    {% endif %}
+    <h6 >Page {{page}} of {{total_pages}}</h6>
+    
+    {% if page < total_pages %}
+    <a href="{{url_for('index', page=page+1)}}" > Next </a>
+    {% endif %}
+    </div> 
+{% endblock %}
+</body>
+
+</html>
+    

@@ -1,0 +1,84 @@
+<html>
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  form{
+    background-color: darkslategray;
+    width: 30%; 
+    margin-left: 30%; 
+    margin-top: 2%; 
+    padding-left: 5%; 
+    padding-right: 5%; 
+    color: white;
+    font-size: small; 
+    margin-bottom: 5%;
+  }
+
+  h4{
+    margin-left: 40%; 
+    padding: 5%; 
+    color: white; 
+    font-size: x-large;
+  }
+
+  .btn{
+    margin-bottom: 4%; 
+    color: white; 
+    border-color: white;
+  }
+  .mb-3{
+    width: 100%
+  }
+</style>
+<body>
+  
+    <form action="{{url_for('register')}}" method="post">
+      <h4 >Sign Up</h4>
+        <div class="mb-3">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname">
+          </div>
+          <div class="mb-3" >
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname">
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="15">
+          </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="mb-3">
+          <label for="password1" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="password1" name="password1">
+        </div>
+        <div class="mb-3 form-check" >
+          <input type="checkbox" class="form-check-input" id="checkbox" name="checkbox" >
+          <label class="form-check-label" for="checkbox" >I agree to the terms and conditions.</label>
+        </div>
+        <button type="submit" class="btn">Sign Up</button>
+        
+      </form>
+      <main class="container my-2">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </main>
+      {% endblock %}    
+</body>
+
+</html>

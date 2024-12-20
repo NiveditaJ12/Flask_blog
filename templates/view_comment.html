@@ -1,0 +1,21 @@
+<html>
+{% extends 'base.html' %}
+{% block content%}
+<body>
+    <div class="card" style="width: 20rem; text-align: center; margin-left: 40%; margin-top: 1%; margin-bottom: 1%; background-color:darkslategrey; color: white; font-size:large;">
+    <p>Post by {{post.author.username}}</p>
+    <p>Content: {{post.content}}</p>
+    {% for comment in post.comments %}
+    <div class="card-body">
+      <h5>{{comment.name}}</h5>
+      <p class="card-subtitle mb-2 text-body-secondary">{{comment.posted_on.strftime('%Y-%m-%d %H:%M:%S')}}</p>
+      <p class="card-subtitle mb-2 text-body-secondary">
+          {{comment.text}}
+      </p>
+  </div>
+  {% endfor %}
+</div>
+ 
+</body>
+{% endblock%}
+</html>
